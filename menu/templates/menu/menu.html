@@ -1,0 +1,58 @@
+<style>
+.menu-tree {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.menu-tree ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 2px 0;
+}
+
+.menu-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.menu-link:hover {
+    background-color: #f5f5f5;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.menu-link.expanded {
+    background-color: #e9ecef;
+}
+
+.menu-children {
+    display: none;
+}
+
+.menu-children.show {
+    display: block;
+}
+</style>
+
+{% if menu_items %}
+<ul class="menu-tree">
+    {% for menu_data in menu_items %}
+        {% include "menu/menu_item.html" with item=menu_data %}
+    {% endfor %}
+</ul>
+{% endif %} 

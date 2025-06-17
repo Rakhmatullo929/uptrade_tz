@@ -1,0 +1,14 @@
+<li class="menu-item">
+    <a href="{{ item.item.get_url }}" 
+       class="menu-link{% if item.is_active %} active{% elif item.is_expanded %} expanded{% endif %}">
+        {{ item.item.title }}
+    </a>
+    
+    {% if item.children %}
+        <ul class="menu-children{% if item.is_expanded %} show{% endif %}">
+            {% for child_item in item.children %}
+                {% include "menu/menu_item.html" with item=child_item %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li> 
