@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse, NoReverseMatch
-
+from django.db.models import CASCADE
 
 class Menu(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название меню")
@@ -14,11 +14,11 @@ class Menu(models.Model):
 
 
 class MenuItem(models.Model):
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name="items", verbose_name="Меню")
+    menu = models.ForeignKey(Menu, CASCADE, related_name="items", verbose_name="Меню")
     title = models.CharField(max_length=200, verbose_name="Название пункта")
     url = models.CharField(max_length=200, blank=True, verbose_name="URL")
     named_url = models.CharField(max_length=100, blank=True, verbose_name="Named URL")
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, 
+    parent = models.ForeignKey('self', CASCADE, blank=True, null=True, 
                               related_name="children", verbose_name="Родительский пункт")
     order = models.PositiveIntegerField(default=0, verbose_name="Порядок сортировки")
     
